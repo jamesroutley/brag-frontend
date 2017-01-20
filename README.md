@@ -8,5 +8,5 @@ Brag is a micro-blogging application which lets you share your day's achievement
 Clone the repo and run:
 
 ```
-$ yarn $$ yarn start
+$ yarn && yarn start
 ```

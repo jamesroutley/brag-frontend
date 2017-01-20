@@ -1,0 +1,17 @@
+/* Page defaults */
+
+body {
+  /* Use system fonts */
+  font-family:
+    -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Helvetica, Arial, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 85%;
+  line-height: 1.7;
+  text-align: justify;
+}
+
+.app {
+  max-width: 600px;
+  margin: 50px auto 50px;
+}

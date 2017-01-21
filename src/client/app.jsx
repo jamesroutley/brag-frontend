@@ -20,18 +20,19 @@ class App extends React.Component {
         response.json()
       )).then(jsonData => (
         this.setState({ posts: jsonData.posts })
-      ));
+      )).catch(error => console.error(error));
   }
 
   render() {
     const posts = this.state.posts.map(post => (
       <Post title={post.title} body={post.body} key={post.id} />
     ));
+    console.log(posts);
     return (
       <div>
         <h1>Brag.</h1>
         <PostForm />
-        {posts}
+        {posts.length ? posts : 'No posts found'}
       </div>
     );
   }

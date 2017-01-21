@@ -97,6 +97,8 @@
 	        return response.json();
 	      }).then(function (jsonData) {
 	        return _this2.setState({ posts: jsonData.posts });
+	      }).catch(function (error) {
+	        return console.error(error);
 	      });
 	    }
 	  }, {
@@ -105,6 +107,7 @@
 	      var posts = this.state.posts.map(function (post) {
 	        return _react2.default.createElement(_post2.default, { title: post.title, body: post.body, key: post.id });
 	      });
+	      console.log(posts);
 	      return _react2.default.createElement(
 	        'div',
 	        null,
@@ -114,7 +117,7 @@
 	          'Brag.'
 	        ),
 	        _react2.default.createElement(_postForm2.default, null),
-	        posts
+	        posts.length ? posts : 'No posts found'
 	      );
 	    }
 	  }]);

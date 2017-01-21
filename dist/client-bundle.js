@@ -46,8 +46,6 @@
 
 	'use strict';
 	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
 	__webpack_require__(1);
 	
 	var _react = __webpack_require__(298);
@@ -58,119 +56,24 @@
 	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
-	var _reactMarkdown = __webpack_require__(468);
+	var _post = __webpack_require__(468);
 	
-	var _reactMarkdown2 = _interopRequireDefault(_reactMarkdown);
+	var _post2 = _interopRequireDefault(_post);
+	
+	var _postForm = __webpack_require__(495);
+	
+	var _postForm2 = _interopRequireDefault(_postForm);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var PostForm = function (_React$Component) {
-	  _inherits(PostForm, _React$Component);
-	
-	  function PostForm(props) {
-	    _classCallCheck(this, PostForm);
-	
-	    var _this = _possibleConstructorReturn(this, (PostForm.__proto__ || Object.getPrototypeOf(PostForm)).call(this, props));
-	
-	    _this.state = {
-	      body: '',
-	      title: ''
-	    };
-	    _this.handleBodyChange = _this.handleBodyChange.bind(_this);
-	    _this.handleTitleChange = _this.handleTitleChange.bind(_this);
-	    _this.handleSubmit = _this.handleSubmit.bind(_this);
-	    return _this;
-	  }
-	
-	  _createClass(PostForm, [{
-	    key: 'handleBodyChange',
-	    value: function handleBodyChange(event) {
-	      this.setState({ body: event.target.value });
-	    }
-	  }, {
-	    key: 'handleTitleChange',
-	    value: function handleTitleChange(event) {
-	      this.setState({ title: event.target.value });
-	    }
-	  }, {
-	    key: 'handleSubmit',
-	    value: function handleSubmit(event) {
-	      var post = {
-	        Title: this.state.title,
-	        Body: this.state.body
-	      };
-	      this.setState({
-	        body: '',
-	        title: ''
-	      });
-	      console.log(post);
-	      event.preventDefault();
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(
-	          'h1',
-	          null,
-	          'User Input'
-	        ),
-	        _react2.default.createElement(
-	          'form',
-	          { onSubmit: this.handleSubmit },
-	          _react2.default.createElement('input', {
-	            type: 'text', placeholder: 'Title',
-	            value: this.state.title, onChange: this.handleTitleChange
-	          }),
-	          _react2.default.createElement('input', {
-	            type: 'text', placeholder: 'Body',
-	            value: this.state.body, onChange: this.handleBodyChange
-	          }),
-	          _react2.default.createElement('input', { type: 'submit', value: 'Post' })
-	        ),
-	        _react2.default.createElement('hr', null)
-	      );
-	    }
-	  }]);
-	
-	  return PostForm;
-	}(_react2.default.Component);
-	
-	var Post = function Post(props) {
-	  return _react2.default.createElement(
-	    'div',
-	    null,
-	    _react2.default.createElement(
-	      'h1',
-	      null,
-	      props.title
-	    ),
-	    _react2.default.createElement(_reactMarkdown2.default, { source: props.body, escapeHtml: true }),
-	    _react2.default.createElement('hr', null)
-	  );
-	};
-	
-	Post.propTypes = {
-	  title: _react2.default.PropTypes.string.isRequired,
-	  body: _react2.default.PropTypes.string.isRequired
-	};
-	
 	var App = function App(props) {
 	  var posts = props.message.Posts.map(function (message) {
-	    return _react2.default.createElement(Post, { title: message.Title, body: message.Body });
+	    return _react2.default.createElement(_post2.default, { title: message.Title, body: message.Body });
 	  });
 	  return _react2.default.createElement(
 	    'div',
 	    null,
-	    _react2.default.createElement(PostForm, null),
+	    _react2.default.createElement(_postForm2.default, null),
 	    posts
 	  );
 	};
@@ -29506,9 +29409,52 @@
 
 	'use strict';
 	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	__webpack_require__(1);
+	
+	var _react = __webpack_require__(298);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactMarkdown = __webpack_require__(469);
+	
+	var _reactMarkdown2 = _interopRequireDefault(_reactMarkdown);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Post = function Post(props) {
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    _react2.default.createElement(
+	      'h1',
+	      null,
+	      props.title
+	    ),
+	    _react2.default.createElement(_reactMarkdown2.default, { source: props.body, escapeHtml: true }),
+	    _react2.default.createElement('hr', null)
+	  );
+	};
+	
+	Post.propTypes = {
+	  title: _react2.default.PropTypes.string.isRequired,
+	  body: _react2.default.PropTypes.string.isRequired
+	};
+	
+	exports.default = Post;
+
+/***/ },
+/* 469 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
 	var React = __webpack_require__(298);
-	var Parser = __webpack_require__(469).Parser;
-	var ReactRenderer = __webpack_require__(489);
+	var Parser = __webpack_require__(470).Parser;
+	var ReactRenderer = __webpack_require__(490);
 	
 	var parser = new Parser();
 	var propTypes = React.PropTypes;
@@ -29578,7 +29524,7 @@
 
 
 /***/ },
-/* 469 */
+/* 470 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -29595,14 +29541,14 @@
 	// console.log(renderer.render(parser.parse('Hello *world*')));
 	
 	module.exports.version = '0.24.0'
-	module.exports.Node = __webpack_require__(470);
-	module.exports.Parser = __webpack_require__(471);
-	module.exports.HtmlRenderer = __webpack_require__(487);
-	module.exports.XmlRenderer = __webpack_require__(488);
+	module.exports.Node = __webpack_require__(471);
+	module.exports.Parser = __webpack_require__(472);
+	module.exports.HtmlRenderer = __webpack_require__(488);
+	module.exports.XmlRenderer = __webpack_require__(489);
 
 
 /***/ },
-/* 470 */
+/* 471 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -29879,15 +29825,15 @@
 
 
 /***/ },
-/* 471 */
+/* 472 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var Node = __webpack_require__(470);
-	var unescapeString = __webpack_require__(472).unescapeString;
-	var OPENTAG = __webpack_require__(472).OPENTAG;
-	var CLOSETAG = __webpack_require__(472).CLOSETAG;
+	var Node = __webpack_require__(471);
+	var unescapeString = __webpack_require__(473).unescapeString;
+	var OPENTAG = __webpack_require__(473).OPENTAG;
+	var CLOSETAG = __webpack_require__(473).CLOSETAG;
 	
 	var CODE_INDENT = 4;
 	
@@ -29898,7 +29844,7 @@
 	var C_SPACE = 32;
 	var C_OPEN_BRACKET = 91;
 	
-	var InlineParser = __webpack_require__(483);
+	var InlineParser = __webpack_require__(484);
 	
 	var reHtmlBlockOpen = [
 	   /./, // dummy for 0
@@ -30755,17 +30701,17 @@
 
 
 /***/ },
-/* 472 */
+/* 473 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var encode = __webpack_require__(473);
-	var decode = __webpack_require__(474);
+	var encode = __webpack_require__(474);
+	var decode = __webpack_require__(475);
 	
 	var C_BACKSLASH = 92;
 	
-	var decodeHTML = __webpack_require__(475).decodeHTML;
+	var decodeHTML = __webpack_require__(476).decodeHTML;
 	
 	var ENTITY = "&(?:#x[a-f0-9]{1,8}|#[0-9]{1,8}|[a-z][a-z0-9]{1,31});";
 	
@@ -30864,7 +30810,7 @@
 
 
 /***/ },
-/* 473 */
+/* 474 */
 /***/ function(module, exports) {
 
 	
@@ -30968,7 +30914,7 @@
 
 
 /***/ },
-/* 474 */
+/* 475 */
 /***/ function(module, exports) {
 
 	
@@ -31096,11 +31042,11 @@
 
 
 /***/ },
-/* 475 */
+/* 476 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var encode = __webpack_require__(476),
-	    decode = __webpack_require__(479);
+	var encode = __webpack_require__(477),
+	    decode = __webpack_require__(480);
 	
 	exports.decode = function(data, level){
 		return (!level || level <= 0 ? decode.XML : decode.HTML)(data);
@@ -31135,15 +31081,15 @@
 
 
 /***/ },
-/* 476 */
+/* 477 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var inverseXML = getInverseObj(__webpack_require__(477)),
+	var inverseXML = getInverseObj(__webpack_require__(478)),
 	    xmlReplacer = getInverseReplacer(inverseXML);
 	
 	exports.XML = getInverse(inverseXML, xmlReplacer);
 	
-	var inverseHTML = getInverseObj(__webpack_require__(478)),
+	var inverseHTML = getInverseObj(__webpack_require__(479)),
 	    htmlReplacer = getInverseReplacer(inverseHTML);
 	
 	exports.HTML = getInverse(inverseHTML, htmlReplacer);
@@ -31214,7 +31160,7 @@
 
 
 /***/ },
-/* 477 */
+/* 478 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -31226,7 +31172,7 @@
 	};
 
 /***/ },
-/* 478 */
+/* 479 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -33358,13 +33304,13 @@
 	};
 
 /***/ },
-/* 479 */
+/* 480 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var entityMap = __webpack_require__(478),
-	    legacyMap = __webpack_require__(480),
-	    xmlMap    = __webpack_require__(477),
-	    decodeCodePoint = __webpack_require__(481);
+	var entityMap = __webpack_require__(479),
+	    legacyMap = __webpack_require__(481),
+	    xmlMap    = __webpack_require__(478),
+	    decodeCodePoint = __webpack_require__(482);
 	
 	var decodeXMLStrict  = getStrictDecoder(xmlMap),
 	    decodeHTMLStrict = getStrictDecoder(entityMap);
@@ -33435,7 +33381,7 @@
 	};
 
 /***/ },
-/* 480 */
+/* 481 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -33548,10 +33494,10 @@
 	};
 
 /***/ },
-/* 481 */
+/* 482 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var decodeMap = __webpack_require__(482);
+	var decodeMap = __webpack_require__(483);
 	
 	module.exports = decodeCodePoint;
 	
@@ -33580,7 +33526,7 @@
 
 
 /***/ },
-/* 482 */
+/* 483 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -33615,20 +33561,20 @@
 	};
 
 /***/ },
-/* 483 */
+/* 484 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var Node = __webpack_require__(470);
-	var common = __webpack_require__(472);
-	var normalizeReference = __webpack_require__(484);
+	var Node = __webpack_require__(471);
+	var common = __webpack_require__(473);
+	var normalizeReference = __webpack_require__(485);
 	
 	var normalizeURI = common.normalizeURI;
 	var unescapeString = common.unescapeString;
-	var fromCodePoint = __webpack_require__(485);
-	var decodeHTML = __webpack_require__(475).decodeHTML;
-	__webpack_require__(486); // Polyfill for String.prototype.repeat
+	var fromCodePoint = __webpack_require__(486);
+	var decodeHTML = __webpack_require__(476).decodeHTML;
+	__webpack_require__(487); // Polyfill for String.prototype.repeat
 	
 	// Constants for character codes:
 	
@@ -34552,7 +34498,7 @@
 
 
 /***/ },
-/* 484 */
+/* 485 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -34600,7 +34546,7 @@
 
 
 /***/ },
-/* 485 */
+/* 486 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -34665,7 +34611,7 @@
 
 
 /***/ },
-/* 486 */
+/* 487 */
 /***/ function(module, exports) {
 
 	/*! http://mths.be/repeat v0.2.0 by @mathias */
@@ -34721,12 +34667,12 @@
 
 
 /***/ },
-/* 487 */
+/* 488 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var escapeXml = __webpack_require__(472).escapeXml;
+	var escapeXml = __webpack_require__(473).escapeXml;
 	
 	// Helper function to produce an HTML tag.
 	var tag = function(name, attrs, selfclosing) {
@@ -35013,12 +34959,12 @@
 
 
 /***/ },
-/* 488 */
+/* 489 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var escapeXml = __webpack_require__(472).escapeXml;
+	var escapeXml = __webpack_require__(473).escapeXml;
 	
 	// Helper function to produce an XML tag.
 	var tag = function(name, attrs, selfclosing) {
@@ -35196,16 +35142,16 @@
 
 
 /***/ },
-/* 489 */
+/* 490 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	var React = __webpack_require__(298);
-	var assign = __webpack_require__(490);
-	var isPlainObject = __webpack_require__(491);
-	var xssFilters = __webpack_require__(492);
-	var pascalCase = __webpack_require__(493);
+	var assign = __webpack_require__(491);
+	var isPlainObject = __webpack_require__(492);
+	var xssFilters = __webpack_require__(493);
+	var pascalCase = __webpack_require__(494);
 	
 	var typeAliases = {
 	    blockquote: 'block_quote',
@@ -35606,7 +35552,7 @@
 
 
 /***/ },
-/* 490 */
+/* 491 */
 /***/ function(module, exports) {
 
 	/**
@@ -36249,7 +36195,7 @@
 
 
 /***/ },
-/* 491 */
+/* 492 */
 /***/ function(module, exports) {
 
 	/**
@@ -36394,7 +36340,7 @@
 
 
 /***/ },
-/* 492 */
+/* 493 */
 /***/ function(module, exports) {
 
 	/*
@@ -37499,7 +37445,7 @@
 
 
 /***/ },
-/* 493 */
+/* 494 */
 /***/ function(module, exports) {
 
 	/*!
@@ -37524,6 +37470,108 @@
 	
 	module.exports = pascalcase;
 
+
+/***/ },
+/* 495 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	__webpack_require__(1);
+	
+	var _react = __webpack_require__(298);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var PostForm = function (_React$Component) {
+	  _inherits(PostForm, _React$Component);
+	
+	  function PostForm(props) {
+	    _classCallCheck(this, PostForm);
+	
+	    var _this = _possibleConstructorReturn(this, (PostForm.__proto__ || Object.getPrototypeOf(PostForm)).call(this, props));
+	
+	    _this.state = {
+	      body: '',
+	      title: ''
+	    };
+	    _this.handleBodyChange = _this.handleBodyChange.bind(_this);
+	    _this.handleTitleChange = _this.handleTitleChange.bind(_this);
+	    _this.handleSubmit = _this.handleSubmit.bind(_this);
+	    return _this;
+	  }
+	
+	  _createClass(PostForm, [{
+	    key: 'handleBodyChange',
+	    value: function handleBodyChange(event) {
+	      this.setState({ body: event.target.value });
+	    }
+	  }, {
+	    key: 'handleTitleChange',
+	    value: function handleTitleChange(event) {
+	      this.setState({ title: event.target.value });
+	    }
+	  }, {
+	    key: 'handleSubmit',
+	    value: function handleSubmit(event) {
+	      var post = {
+	        Title: this.state.title,
+	        Body: this.state.body
+	      };
+	      this.setState({
+	        body: '',
+	        title: ''
+	      });
+	      console.log(post);
+	      event.preventDefault();
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'h1',
+	          null,
+	          'User Input'
+	        ),
+	        _react2.default.createElement(
+	          'form',
+	          { onSubmit: this.handleSubmit },
+	          _react2.default.createElement('input', {
+	            type: 'text', placeholder: 'Title',
+	            value: this.state.title, onChange: this.handleTitleChange
+	          }),
+	          _react2.default.createElement('input', {
+	            type: 'text', placeholder: 'Body',
+	            value: this.state.body, onChange: this.handleBodyChange
+	          }),
+	          _react2.default.createElement('input', { type: 'submit', value: 'Post' })
+	        ),
+	        _react2.default.createElement('hr', null)
+	      );
+	    }
+	  }]);
+	
+	  return PostForm;
+	}(_react2.default.Component);
+	
+	exports.default = PostForm;
 
 /***/ }
 /******/ ]);

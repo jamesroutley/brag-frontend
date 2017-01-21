@@ -46,6 +46,8 @@
 
 	'use strict';
 	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
 	__webpack_require__(1);
 	
 	var _react = __webpack_require__(298);
@@ -66,41 +68,67 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var App = function App(props) {
-	  var posts = props.message.Posts.map(function (message) {
-	    return _react2.default.createElement(_post2.default, { title: message.Title, body: message.Body });
-	  });
-	  return _react2.default.createElement(
-	    'div',
-	    null,
-	    _react2.default.createElement(
-	      'h1',
-	      null,
-	      'Brag.'
-	    ),
-	    _react2.default.createElement(_postForm2.default, null),
-	    posts
-	  );
-	};
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var App = function (_React$Component) {
+	  _inherits(App, _React$Component);
+	
+	  function App(props) {
+	    _classCallCheck(this, App);
+	
+	    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+	
+	    _this.state = {
+	      posts: []
+	    };
+	    return _this;
+	  }
+	
+	  _createClass(App, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      var _this2 = this;
+	
+	      fetch(this.props.url, { mode: 'cors' }).then(function (response) {
+	        return response.json();
+	      }).then(function (jsonData) {
+	        return _this2.setState({ posts: jsonData.posts });
+	      });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var posts = this.state.posts.map(function (post) {
+	        return _react2.default.createElement(_post2.default, { title: post.title, body: post.body, key: post.id });
+	      });
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'h1',
+	          null,
+	          'Brag.'
+	        ),
+	        _react2.default.createElement(_postForm2.default, null),
+	        posts
+	      );
+	    }
+	  }]);
+	
+	  return App;
+	}(_react2.default.Component);
 	
 	App.propTypes = {
-	  message: _react2.default.PropTypes.shape.isRequired
+	  url: _react2.default.PropTypes.string.isRequired
 	};
 	
-	var MockData = {
-	  Posts: [{
-	    Title: 'post0',
-	    Body: '## markdown?'
-	  }, {
-	    Title: 'post1',
-	    Body: '```body2```'
-	  }, {
-	    Title: 'post3',
-	    Body: 'body3'
-	  }]
-	};
+	var apiUrl = 'https://l1xcmh27r8.execute-api.eu-west-1.amazonaws.com/dev/';
 	
-	_reactDom2.default.render(_react2.default.createElement(App, { message: MockData }), document.querySelector('.app'));
+	_reactDom2.default.render(_react2.default.createElement(App, { url: apiUrl }), document.querySelector('.app'));
 
 /***/ },
 /* 1 */

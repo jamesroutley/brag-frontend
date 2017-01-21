@@ -6,38 +6,41 @@ import ReactDOM from 'react-dom';
 import Post from './post';
 import PostForm from './post-form';
 
-const App = (props) => {
-  const posts = props.message.Posts.map(message => (
-    <Post title={message.Title} body={message.Body} />
-  ));
-  return (
-    <div>
-      <h1>Brag.</h1>
-      <PostForm />
-      {posts}
-    </div>
-  );
-};
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      posts: [],
+    };
+  }
+
+  componentDidMount() {
+    fetch(this.props.url, { mode: 'cors' })
+      .then(response => (
+        response.json()
+      )).then(jsonData => (
+        this.setState({ posts: jsonData.posts })
+      ));
+  }
+
+  render() {
+    const posts = this.state.posts.map(post => (
+      <Post title={post.title} body={post.body} key={post.id} />
+    ));
+    return (
+      <div>
+        <h1>Brag.</h1>
+        <PostForm />
+        {posts}
+      </div>
+    );
+  }
+}
 
 App.propTypes = {
-  message: React.PropTypes.shape.isRequired,
+  url: React.PropTypes.string.isRequired,
 };
 
-const MockData = {
-  Posts: [
-    {
-      Title: 'post0',
-      Body: '## markdown?',
-    },
-    {
-      Title: 'post1',
-      Body: '```body2```',
-    },
-    {
-      Title: 'post3',
-      Body: 'body3',
-    },
-  ],
-};
+const apiUrl = 'https://l1xcmh27r8.execute-api.eu-west-1.amazonaws.com/dev/';
 
-ReactDOM.render(<App message={MockData} />, document.querySelector('.app'));
+ReactDOM.render(<App url={apiUrl} />, document.querySelector('.app'));

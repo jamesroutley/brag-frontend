@@ -2,6 +2,7 @@ import 'babel-polyfill';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import ReactMarkdown from 'react-markdown';
 
 class PostForm extends React.Component {
   constructor(props) {
@@ -60,7 +61,7 @@ class PostForm extends React.Component {
 const Post = props => (
   <div>
     <h1>{props.title}</h1>
-    <p>{props.body}</p>
+    <ReactMarkdown source={props.body} escapeHtml />
     <hr />
   </div>
 );
@@ -90,11 +91,11 @@ const MockData = {
   Posts: [
     {
       Title: 'post0',
-      Body: 'body0',
+      Body: '## markdown?',
     },
     {
       Title: 'post1',
-      Body: 'body2',
+      Body: '```body2```',
     },
     {
       Title: 'post3',

@@ -38,17 +38,17 @@ class PostForm extends React.Component {
   render() {
     return (
       <div>
-        <h1>User Input</h1>
-        <form onSubmit={this.handleSubmit}>
+        <form className="postForm" onSubmit={this.handleSubmit}>
           <input
-            type="text" placeholder="Title"
+            className="postFormTitle" type="text" placeholder="Title"
             value={this.state.title} onChange={this.handleTitleChange}
           />
-          <input
-            type="text" placeholder="Body"
-            value={this.state.body} onChange={this.handleBodyChange}
+          <textarea
+            className="postFormBody" type="text"
+            placeholder="Write about your experience" value={this.state.body}
+            onChange={this.handleBodyChange}
           />
-          <input type="submit" value="Post" />
+          <input className="postFormSubmit" type="submit" value="Post" />
         </form>
         <hr />
       </div>

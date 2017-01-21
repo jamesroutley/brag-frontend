@@ -73,6 +73,11 @@
 	  return _react2.default.createElement(
 	    'div',
 	    null,
+	    _react2.default.createElement(
+	      'h1',
+	      null,
+	      'Brag.'
+	    ),
 	    _react2.default.createElement(_postForm2.default, null),
 	    posts
 	  );
@@ -37546,22 +37551,18 @@
 	        'div',
 	        null,
 	        _react2.default.createElement(
-	          'h1',
-	          null,
-	          'User Input'
-	        ),
-	        _react2.default.createElement(
 	          'form',
-	          { onSubmit: this.handleSubmit },
+	          { className: 'postForm', onSubmit: this.handleSubmit },
 	          _react2.default.createElement('input', {
-	            type: 'text', placeholder: 'Title',
+	            className: 'postFormTitle', type: 'text', placeholder: 'Title',
 	            value: this.state.title, onChange: this.handleTitleChange
 	          }),
-	          _react2.default.createElement('input', {
-	            type: 'text', placeholder: 'Body',
-	            value: this.state.body, onChange: this.handleBodyChange
+	          _react2.default.createElement('textarea', {
+	            className: 'postFormBody', type: 'text',
+	            placeholder: 'Write about your experience', value: this.state.body,
+	            onChange: this.handleBodyChange
 	          }),
-	          _react2.default.createElement('input', { type: 'submit', value: 'Post' })
+	          _react2.default.createElement('input', { className: 'postFormSubmit', type: 'submit', value: 'Post' })
 	        ),
 	        _react2.default.createElement('hr', null)
 	      );

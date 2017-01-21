@@ -15,3 +15,34 @@ body {
   max-width: 600px;
   margin: 50px auto 50px;
 }
+
+.postForm {
+  /*display: inline-block;*/
+  /*position: relative;*/
+  /*float: left;*/
+}
+
+.postFormTitle {
+  display: inline-block;
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  /*border: 1px;*/
+  margin: 2px;
+}
+
+.postFormBody {
+  display: inline-block;
+  box-sizing: border-box;
+  min-height: 100px;
+  max-height: 500px;
+  width: 100%;
+  resize: vertical;
+  padding: 8px;
+  margin: 2px;
+}
+
+.postFormSubmit {
+  /*display: inline-block;*/
+  /*float: right;*/
+}

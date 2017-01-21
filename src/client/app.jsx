@@ -12,6 +12,7 @@ const App = (props) => {
   ));
   return (
     <div>
+      <h1>Brag.</h1>
       <PostForm />
       {posts}
     </div>

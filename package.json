@@ -27,7 +27,8 @@
     "json-loader": "^0.5.4",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
-    "react-markdown": "^2.4.4"
+    "react-markdown": "^2.4.4",
+    "react-tabs": "^0.8.2"
   },
   "devDependencies": {
     "babel-loader": "^6.2.5",

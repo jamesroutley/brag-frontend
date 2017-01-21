@@ -2,6 +2,8 @@ import 'babel-polyfill';
 
 import React from 'react';
 
+import TextAreaWithMarkdownPreview from './text-area-with-markdown-preview';
+
 class PostForm extends React.Component {
   constructor(props) {
     super(props);
@@ -43,11 +45,11 @@ class PostForm extends React.Component {
             className="postFormTitle" type="text" placeholder="Title"
             value={this.state.title} onChange={this.handleTitleChange}
           />
-          <textarea
-            className="postFormBody" type="text"
-            placeholder="Write about your experience" value={this.state.body}
-            onChange={this.handleBodyChange}
+          <TextAreaWithMarkdownPreview
+            handleBodyChange={this.handleBodyChange}
+            body={this.state.body}
           />
+
           <input className="postFormSubmit" type="submit" value="Post" />
         </form>
         <hr />
@@ -55,6 +57,5 @@ class PostForm extends React.Component {
     );
   }
 }
-
 
 export default PostForm;

@@ -16,7 +16,7 @@ const TextAreaWithMarkdownPreview = props => (
       </TabList>
       <TabPanel>
         <textarea
-          className="postFormBody" type="text"
+          className="bragFormBody" type="text"
           value={props.body}
           onChange={props.handleBodyChange}
           placeholder="Write about your experience"

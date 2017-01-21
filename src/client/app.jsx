@@ -3,14 +3,14 @@ import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Post from './post';
-import PostForm from './post-form';
+import Brag from './brag';
+import BragForm from './brag-form';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      posts: [],
+      brags: [],
     };
   }
 
@@ -19,20 +19,20 @@ class App extends React.Component {
       .then(response => (
         response.json()
       )).then(jsonData => (
-        this.setState({ posts: jsonData.posts })
+        this.setState({ brags: jsonData.brags })
       )).catch(error => console.error(error));
   }
 
   render() {
-    const posts = this.state.posts.map(post => (
-      <Post title={post.title} body={post.body} key={post.id} />
+    const brags = this.state.brags.map(brag => (
+      <Brag title={brag.title} body={brag.body} key={brag.id} />
     ));
-    console.log(posts);
+    console.log(brags);
     return (
       <div>
         <h1>Brag.</h1>
-        <PostForm />
-        {posts.length ? posts : 'No posts found'}
+        <BragForm />
+        {brags.length ? brags : 'No posts found'}
       </div>
     );
   }

@@ -16,13 +16,13 @@ body {
   margin: 50px auto 50px;
 }
 
-.postForm {
+.bragForm {
   /*display: inline-block;*/
   /*position: relative;*/
   /*float: left;*/
 }
 
-.postFormTitle {
+.bragFormTitle {
   display: inline-block;
   width: 100%;
   padding: 8px;
@@ -31,7 +31,7 @@ body {
   margin: 2px;
 }
 
-.postFormBody {
+.bragFormBody {
   display: inline-block;
   box-sizing: border-box;
   min-height: 100px;
@@ -42,7 +42,7 @@ body {
   margin: 2px;
 }
 
-.postFormSubmit {
+.bragFormSubmit {
   /*display: inline-block;*/
   /*float: right;*/
 }

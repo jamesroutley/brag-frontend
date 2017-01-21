@@ -58,13 +58,13 @@
 	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
-	var _post = __webpack_require__(468);
+	var _brag = __webpack_require__(468);
 	
-	var _post2 = _interopRequireDefault(_post);
+	var _brag2 = _interopRequireDefault(_brag);
 	
-	var _postForm = __webpack_require__(495);
+	var _bragForm = __webpack_require__(495);
 	
-	var _postForm2 = _interopRequireDefault(_postForm);
+	var _bragForm2 = _interopRequireDefault(_bragForm);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -83,7 +83,7 @@
 	    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 	
 	    _this.state = {
-	      posts: []
+	      brags: []
 	    };
 	    return _this;
 	  }
@@ -96,7 +96,7 @@
 	      fetch(this.props.url, { mode: 'cors' }).then(function (response) {
 	        return response.json();
 	      }).then(function (jsonData) {
-	        return _this2.setState({ posts: jsonData.posts });
+	        return _this2.setState({ brags: jsonData.brags });
 	      }).catch(function (error) {
 	        return console.error(error);
 	      });
@@ -104,10 +104,10 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var posts = this.state.posts.map(function (post) {
-	        return _react2.default.createElement(_post2.default, { title: post.title, body: post.body, key: post.id });
+	      var brags = this.state.brags.map(function (brag) {
+	        return _react2.default.createElement(_brag2.default, { title: brag.title, body: brag.body, key: brag.id });
 	      });
-	      console.log(posts);
+	      console.log(brags);
 	      return _react2.default.createElement(
 	        'div',
 	        null,
@@ -116,8 +116,8 @@
 	          null,
 	          'Brag.'
 	        ),
-	        _react2.default.createElement(_postForm2.default, null),
-	        posts.length ? posts : 'No posts found'
+	        _react2.default.createElement(_bragForm2.default, null),
+	        brags.length ? brags : 'No posts found'
 	      );
 	    }
 	  }]);
@@ -29461,7 +29461,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var Post = function Post(props) {
+	var Brag = function Brag(props) {
 	  return _react2.default.createElement(
 	    'div',
 	    null,
@@ -29475,12 +29475,12 @@
 	  );
 	};
 	
-	Post.propTypes = {
+	Brag.propTypes = {
 	  title: _react2.default.PropTypes.string.isRequired,
 	  body: _react2.default.PropTypes.string.isRequired
 	};
 	
-	exports.default = Post;
+	exports.default = Brag;
 
 /***/ },
 /* 469 */
@@ -37537,13 +37537,13 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var PostForm = function (_React$Component) {
-	  _inherits(PostForm, _React$Component);
+	var BragForm = function (_React$Component) {
+	  _inherits(BragForm, _React$Component);
 	
-	  function PostForm(props) {
-	    _classCallCheck(this, PostForm);
+	  function BragForm(props) {
+	    _classCallCheck(this, BragForm);
 	
-	    var _this = _possibleConstructorReturn(this, (PostForm.__proto__ || Object.getPrototypeOf(PostForm)).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (BragForm.__proto__ || Object.getPrototypeOf(BragForm)).call(this, props));
 	
 	    _this.state = {
 	      body: '',
@@ -37555,7 +37555,7 @@
 	    return _this;
 	  }
 	
-	  _createClass(PostForm, [{
+	  _createClass(BragForm, [{
 	    key: 'handleBodyChange',
 	    value: function handleBodyChange(event) {
 	      this.setState({ body: event.target.value });
@@ -37568,7 +37568,7 @@
 	  }, {
 	    key: 'handleSubmit',
 	    value: function handleSubmit(event) {
-	      var post = {
+	      var brag = {
 	        Title: this.state.title,
 	        Body: this.state.body
 	      };
@@ -37576,7 +37576,7 @@
 	        body: '',
 	        title: ''
 	      });
-	      console.log(post);
+	      console.log(brag);
 	      event.preventDefault();
 	    }
 	  }, {
@@ -37587,26 +37587,26 @@
 	        null,
 	        _react2.default.createElement(
 	          'form',
-	          { className: 'postForm', onSubmit: this.handleSubmit },
+	          { className: 'bragForm', onSubmit: this.handleSubmit },
 	          _react2.default.createElement('input', {
-	            className: 'postFormTitle', type: 'text', placeholder: 'Title',
+	            className: 'bragFormTitle', type: 'text', placeholder: 'Title',
 	            value: this.state.title, onChange: this.handleTitleChange
 	          }),
 	          _react2.default.createElement(_textAreaWithMarkdownPreview2.default, {
 	            handleBodyChange: this.handleBodyChange,
 	            body: this.state.body
 	          }),
-	          _react2.default.createElement('input', { className: 'postFormSubmit', type: 'submit', value: 'Post' })
+	          _react2.default.createElement('input', { className: 'bragFormSubmit', type: 'submit', value: 'Post' })
 	        ),
 	        _react2.default.createElement('hr', null)
 	      );
 	    }
 	  }]);
 	
-	  return PostForm;
+	  return BragForm;
 	}(_react2.default.Component);
 	
-	exports.default = PostForm;
+	exports.default = BragForm;
 
 /***/ },
 /* 496 */
@@ -37659,7 +37659,7 @@
 	        _reactTabs.TabPanel,
 	        null,
 	        _react2.default.createElement('textarea', {
-	          className: 'postFormBody', type: 'text',
+	          className: 'bragFormBody', type: 'text',
 	          value: props.body,
 	          onChange: props.handleBodyChange,
 	          placeholder: 'Write about your experience'

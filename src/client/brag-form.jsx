@@ -4,7 +4,7 @@ import React from 'react';
 
 import TextAreaWithMarkdownPreview from './text-area-with-markdown-preview';
 
-class PostForm extends React.Component {
+class BragForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -25,7 +25,7 @@ class PostForm extends React.Component {
   }
 
   handleSubmit(event) {
-    const post = {
+    const brag = {
       Title: this.state.title,
       Body: this.state.body,
     };
@@ -33,16 +33,16 @@ class PostForm extends React.Component {
       body: '',
       title: '',
     });
-    console.log(post);
+    console.log(brag);
     event.preventDefault();
   }
 
   render() {
     return (
       <div>
-        <form className="postForm" onSubmit={this.handleSubmit}>
+        <form className="bragForm" onSubmit={this.handleSubmit}>
           <input
-            className="postFormTitle" type="text" placeholder="Title"
+            className="bragFormTitle" type="text" placeholder="Title"
             value={this.state.title} onChange={this.handleTitleChange}
           />
           <TextAreaWithMarkdownPreview
@@ -50,7 +50,7 @@ class PostForm extends React.Component {
             body={this.state.body}
           />
 
-          <input className="postFormSubmit" type="submit" value="Post" />
+          <input className="bragFormSubmit" type="submit" value="Post" />
         </form>
         <hr />
       </div>
@@ -58,4 +58,4 @@ class PostForm extends React.Component {
   }
 }
 
-export default PostForm;
+export default BragForm;

@@ -20,12 +20,6 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    // fetch(this.props.url, { mode: 'cors' })
-    //   .then(response => (
-    //     response.json()
-    //   )).then(jsonData => (
-    //     this.setState({ brags: jsonData.brags })
-    //   )).catch(error => console.error(error));
     this.loadBrags();
     setInterval(this.loadBrags, this.props.pollInterval);
   }

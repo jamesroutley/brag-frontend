@@ -154,7 +154,8 @@
 	          title: brag.title,
 	          body: brag.body,
 	          key: brag.id,
-	          creationTime: parseInt(brag.creation_time, 10)
+	          creationTime: parseInt(brag.creation_time, 10),
+	          userName: brag.name
 	        });
 	      });
 	      console.log(this.state.brags);
@@ -29563,7 +29564,9 @@
 	      _react2.default.createElement(
 	        'small',
 	        null,
-	        'Posted ',
+	        'Posted by ',
+	        props.userName,
+	        ' ',
 	        _moment2.default.unix(props.creationTime).fromNow()
 	      )
 	    ),
@@ -29574,7 +29577,12 @@
 	Brag.propTypes = {
 	  title: _react2.default.PropTypes.string.isRequired,
 	  body: _react2.default.PropTypes.string.isRequired,
-	  creationTime: _react2.default.PropTypes.number
+	  creationTime: _react2.default.PropTypes.number.isRequired,
+	  userName: _react2.default.PropTypes.string
+	};
+	
+	Brag.defaultProps = {
+	  userName: 'anonymous'
 	};
 	
 	exports.default = Brag;

@@ -8,7 +8,7 @@ const Brag = props => (
   <div>
     <h1>{props.title}</h1>
     <ReactMarkdown source={props.body} escapeHtml />
-    <p><small>Posted {moment.unix(props.creationTime).fromNow()}</small></p>
+    <p><small>Posted by {props.userName} {moment.unix(props.creationTime).fromNow()}</small></p>
     <hr />
   </div>
 );
@@ -16,7 +16,12 @@ const Brag = props => (
 Brag.propTypes = {
   title: React.PropTypes.string.isRequired,
   body: React.PropTypes.string.isRequired,
-  creationTime: React.PropTypes.number,
+  creationTime: React.PropTypes.number.isRequired,
+  userName: React.PropTypes.string,
+};
+
+Brag.defaultProps = {
+  userName: 'anonymous',
 };
 
 

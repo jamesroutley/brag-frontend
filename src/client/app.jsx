@@ -68,6 +68,7 @@ class App extends React.Component {
         body={brag.body}
         key={brag.id}
         creationTime={parseInt(brag.creation_time, 10)}
+        userName={brag.name}
       />
     ));
     console.log(this.state.brags);

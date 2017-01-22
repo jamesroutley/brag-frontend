@@ -85,6 +85,7 @@
 	    _this.state = {
 	      brags: []
 	    };
+	    _this.addBrag = _this.addBrag.bind(_this);
 	    return _this;
 	  }
 	
@@ -104,15 +105,17 @@
 	  }, {
 	    key: 'addBrag',
 	    value: function addBrag(brag) {
-	      // fetch(`${this.props.url}brag`, {
-	      //   method: 'POST',
-	      //   headers: {
-	      //     ContentType: 'application/json',
-	      //   },
-	      //   body: JSON.stringify(brag),
-	      // });
-	      console.log(this);
-	      console.log(brag);
+	      fetch(this.props.url + 'brag', {
+	        method: 'POST',
+	        mode: 'cors',
+	        headers: {
+	          Accept: 'application/json',
+	          'Content-Type': 'application/json'
+	        },
+	        body: JSON.stringify(brag)
+	      }).catch(function (error) {
+	        return console.error(error);
+	      });
 	    }
 	  }, {
 	    key: 'render',
@@ -120,7 +123,6 @@
 	      var brags = this.state.brags.map(function (brag) {
 	        return _react2.default.createElement(_brag2.default, { title: brag.title, body: brag.body, key: brag.id });
 	      });
-	      console.log(brags);
 	      return _react2.default.createElement(
 	        'div',
 	        null,
@@ -37598,7 +37600,6 @@
 	        body: '',
 	        title: ''
 	      });
-	      // console.log(brag);
 	      this.props.addBrag(brag);
 	      event.preventDefault();
 	    }

@@ -12,6 +12,7 @@ class App extends React.Component {
     this.state = {
       brags: [],
     };
+    this.addBrag = this.addBrag.bind(this);
   }
 
   componentDidMount() {
@@ -24,22 +25,21 @@ class App extends React.Component {
   }
 
   addBrag(brag) {
-    // fetch(`${this.props.url}brag`, {
-    //   method: 'POST',
-    //   headers: {
-    //     ContentType: 'application/json',
-    //   },
-    //   body: JSON.stringify(brag),
-    // });
-    console.log(this);
-    console.log(brag);
+    fetch(`${this.props.url}brag`, {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(brag),
+    }).catch(error => console.error(error));
   }
 
   render() {
     const brags = this.state.brags.map(brag => (
       <Brag title={brag.title} body={brag.body} key={brag.id} />
     ));
-    console.log(brags);
     return (
       <div>
         <header>

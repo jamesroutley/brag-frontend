@@ -33,7 +33,6 @@ class BragForm extends React.Component {
       body: '',
       title: '',
     });
-    // console.log(brag);
     this.props.addBrag(brag);
     event.preventDefault();
   }

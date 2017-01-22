@@ -16,20 +16,31 @@ class App extends React.Component {
     };
     this.addBrag = this.addBrag.bind(this);
     this.onSignIn = this.onSignIn.bind(this);
+    this.loadBrags = this.loadBrags.bind(this);
   }
 
   componentDidMount() {
+    // fetch(this.props.url, { mode: 'cors' })
+    //   .then(response => (
+    //     response.json()
+    //   )).then(jsonData => (
+    //     this.setState({ brags: jsonData.brags })
+    //   )).catch(error => console.error(error));
+    this.loadBrags();
+    setInterval(this.loadBrags, this.props.pollInterval);
+  }
+
+  onSignIn(googleUser) {
+    this.setState({ googleUser });
+  }
+
+  loadBrags() {
     fetch(this.props.url, { mode: 'cors' })
       .then(response => (
         response.json()
       )).then(jsonData => (
         this.setState({ brags: jsonData.brags })
-      )).then(console.log(this.state.brags))
-        .catch(error => console.error(error));
-  }
-
-  onSignIn(googleUser) {
-    this.setState({ googleUser });
+      )).catch(error => console.error(error));
   }
 
   addBrag(brag) {
@@ -46,13 +57,20 @@ class App extends React.Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(body),
-    }).catch(error => console.error(error));
+    }).then(this.loadBrags())
+      .catch(error => console.error(error));
   }
 
   render() {
     const brags = this.state.brags.map(brag => (
-      <Brag title={brag.title} body={brag.body} key={brag.id} />
+      <Brag
+        title={brag.title}
+        body={brag.body}
+        key={brag.id}
+        creationTime={parseInt(brag.creation_time, 10)}
+      />
     ));
+    console.log(this.state.brags);
     return (
       <div>
         <header>
@@ -85,8 +103,9 @@ class App extends React.Component {
 
 App.propTypes = {
   url: React.PropTypes.string.isRequired,
+  pollInterval: React.PropTypes.number.isRequired,
 };
 
 const apiUrl = 'https://l1xcmh27r8.execute-api.eu-west-1.amazonaws.com/prod/';
 
-ReactDOM.render(<App url={apiUrl} />, document.querySelector('.app'));
+ReactDOM.render(<App url={apiUrl} pollInterval={10000} />, document.querySelector('.app'));

@@ -2,6 +2,7 @@
 
 import gulp from 'gulp';
 import babel from 'gulp-babel';
+import gls from 'gulp-live-server';
 import eslint from 'gulp-eslint';
 import del from 'del';
 import webpack from 'webpack-stream';
@@ -41,6 +42,11 @@ gulp.task('build', ['lint', 'clean'], () =>
     .pipe(gulp.dest(paths.libDir))
 );
 
+gulp.task('serve', ['lint', 'clean'], () => {
+  const server = gls.static('dist', '8080');
+  server.start();
+});
+
 gulp.task('main', ['lint', 'clean'], () =>
   gulp.src(paths.clientEntryPoint)
     .pipe(webpack(webpackConfig))
@@ -51,4 +57,4 @@ gulp.task('watch', () => {
   gulp.watch(paths.allSrcJs, ['main']);
 });
 
-gulp.task('default', ['watch', 'main']);
+gulp.task('default', ['watch', 'main', 'serve']);

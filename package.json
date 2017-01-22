@@ -5,7 +5,9 @@
   "scripts": {
     "start": "gulp",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "tutorial-test": "gulp main"
+    "tutorial-test": "gulp main",
+    "build": "gulp build",
+    "serve": "gulp serve"
   },
   "eslintConfig": {
     "extends": "airbnb",
@@ -43,6 +45,7 @@
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "gulp-eslint": "^3.0.1",
+    "gulp-live-server": "^0.0.30",
     "webpack-stream": "^3.2.0"
   },
   "repository": "verekia/js-stack-from-scratch",

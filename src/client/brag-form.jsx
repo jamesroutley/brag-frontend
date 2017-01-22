@@ -44,7 +44,7 @@ class BragForm extends React.Component {
         <form className="bragForm" onSubmit={this.handleSubmit}>
           <input
             className="bragFormTitle" type="text" placeholder="Title"
-            value={this.state.title} onChange={this.handleTitleChange}
+            value={this.state.title} onChange={this.handleTitleChange} required
           />
           <TextAreaWithMarkdownPreview
             handleBodyChange={this.handleBodyChange}

@@ -37613,7 +37613,7 @@
 	          { className: 'bragForm', onSubmit: this.handleSubmit },
 	          _react2.default.createElement('input', {
 	            className: 'bragFormTitle', type: 'text', placeholder: 'Title',
-	            value: this.state.title, onChange: this.handleTitleChange
+	            value: this.state.title, onChange: this.handleTitleChange, required: true
 	          }),
 	          _react2.default.createElement(_textAreaWithMarkdownPreview2.default, {
 	            handleBodyChange: this.handleBodyChange,
@@ -37689,7 +37689,8 @@
 	          className: 'bragFormBody', type: 'text',
 	          value: props.body,
 	          onChange: props.handleBodyChange,
-	          placeholder: 'Write about your experience'
+	          placeholder: 'Write about your experience',
+	          required: true
 	        })
 	      ),
 	      _react2.default.createElement(

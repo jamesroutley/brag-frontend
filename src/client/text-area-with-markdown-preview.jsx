@@ -20,6 +20,7 @@ const TextAreaWithMarkdownPreview = props => (
           value={props.body}
           onChange={props.handleBodyChange}
           placeholder="Write about your experience"
+          required
         />
       </TabPanel>
       <TabPanel>

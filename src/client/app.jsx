@@ -57,7 +57,7 @@ class App extends React.Component {
       <div>
         <header>
           <h1>Brag.</h1>
-          <p>Share your daily technical achievements.</p>
+          <p>Share technical achievements.</p>
         </header>
         {this.state.googleUser ?
           <BragForm addBrag={this.addBrag} /> :

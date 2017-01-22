@@ -2,6 +2,7 @@ import 'babel-polyfill';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import GoogleLogin from 'react-google-login';
 
 import Brag from './brag';
 import BragForm from './brag-form';
@@ -11,8 +12,10 @@ class App extends React.Component {
     super(props);
     this.state = {
       brags: [],
+      googleUser: null,
     };
     this.addBrag = this.addBrag.bind(this);
+    this.onSignIn = this.onSignIn.bind(this);
   }
 
   componentDidMount() {
@@ -21,10 +24,20 @@ class App extends React.Component {
         response.json()
       )).then(jsonData => (
         this.setState({ brags: jsonData.brags })
-      )).catch(error => console.error(error));
+      )).then(console.log(this.state.brags))
+        .catch(error => console.error(error));
+  }
+
+  onSignIn(googleUser) {
+    this.setState({ googleUser });
   }
 
   addBrag(brag) {
+    const body = {
+      brag,
+      id_token: this.state.googleUser.getAuthResponse().id_token,
+    };
+    console.log(body);
     fetch(`${this.props.url}brag`, {
       method: 'POST',
       mode: 'cors',
@@ -32,7 +45,7 @@ class App extends React.Component {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(brag),
+      body: JSON.stringify(body),
     }).catch(error => console.error(error));
   }
 
@@ -46,7 +59,24 @@ class App extends React.Component {
           <h1>Brag.</h1>
           <p>Share your daily technical achievements.</p>
         </header>
-        <BragForm addBrag={this.addBrag} />
+        {this.state.googleUser ?
+          <BragForm addBrag={this.addBrag} /> :
+            <GoogleLogin
+              clientId="767808022091-o5p6ssp5q24va3m81ifns46taq1oa995.apps.googleusercontent.com"
+              buttonText="Sign in with Google to post ->"
+              onSuccess={this.onSignIn}
+              onFailure={console.error}
+              style={{
+                display: 'block',
+                background: '#fff',
+                color: '#000',
+                cursor: 'pointer',  // XXX: not sure why this isn't working by default
+                paddingTop: 10,
+                paddingBottom: 10,
+                borderRadius: 4,
+                border: '1px solid black',
+              }}
+            />}
         {brags.length ? brags : 'No posts found'}
       </div>
     );
@@ -57,6 +87,6 @@ App.propTypes = {
   url: React.PropTypes.string.isRequired,
 };
 
-const apiUrl = 'https://l1xcmh27r8.execute-api.eu-west-1.amazonaws.com/dev/';
+const apiUrl = 'https://l1xcmh27r8.execute-api.eu-west-1.amazonaws.com/prod/';
 
 ReactDOM.render(<App url={apiUrl} />, document.querySelector('.app'));

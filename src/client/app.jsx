@@ -23,6 +23,18 @@ class App extends React.Component {
       )).catch(error => console.error(error));
   }
 
+  addBrag(brag) {
+    // fetch(`${this.props.url}brag`, {
+    //   method: 'POST',
+    //   headers: {
+    //     ContentType: 'application/json',
+    //   },
+    //   body: JSON.stringify(brag),
+    // });
+    console.log(this);
+    console.log(brag);
+  }
+
   render() {
     const brags = this.state.brags.map(brag => (
       <Brag title={brag.title} body={brag.body} key={brag.id} />
@@ -30,8 +42,11 @@ class App extends React.Component {
     console.log(brags);
     return (
       <div>
-        <h1>Brag.</h1>
-        <BragForm />
+        <header>
+          <h1>Brag.</h1>
+          <p>Share your daily technical achievements.</p>
+        </header>
+        <BragForm addBrag={this.addBrag} />
         {brags.length ? brags : 'No posts found'}
       </div>
     );

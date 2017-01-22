@@ -26,14 +26,15 @@ class BragForm extends React.Component {
 
   handleSubmit(event) {
     const brag = {
-      Title: this.state.title,
-      Body: this.state.body,
+      title: this.state.title,
+      body: this.state.body,
     };
     this.setState({
       body: '',
       title: '',
     });
-    console.log(brag);
+    // console.log(brag);
+    this.props.addBrag(brag);
     event.preventDefault();
   }
 
@@ -57,5 +58,9 @@ class BragForm extends React.Component {
     );
   }
 }
+
+BragForm.propTypes = {
+  addBrag: React.PropTypes.func.isRequired,
+};
 
 export default BragForm;

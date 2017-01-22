@@ -102,6 +102,19 @@
 	      });
 	    }
 	  }, {
+	    key: 'addBrag',
+	    value: function addBrag(brag) {
+	      // fetch(`${this.props.url}brag`, {
+	      //   method: 'POST',
+	      //   headers: {
+	      //     ContentType: 'application/json',
+	      //   },
+	      //   body: JSON.stringify(brag),
+	      // });
+	      console.log(this);
+	      console.log(brag);
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var brags = this.state.brags.map(function (brag) {
@@ -112,11 +125,20 @@
 	        'div',
 	        null,
 	        _react2.default.createElement(
-	          'h1',
+	          'header',
 	          null,
-	          'Brag.'
+	          _react2.default.createElement(
+	            'h1',
+	            null,
+	            'Brag.'
+	          ),
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            'Share your daily technical achievements.'
+	          )
 	        ),
-	        _react2.default.createElement(_bragForm2.default, null),
+	        _react2.default.createElement(_bragForm2.default, { addBrag: this.addBrag }),
 	        brags.length ? brags : 'No posts found'
 	      );
 	    }
@@ -37569,14 +37591,15 @@
 	    key: 'handleSubmit',
 	    value: function handleSubmit(event) {
 	      var brag = {
-	        Title: this.state.title,
-	        Body: this.state.body
+	        title: this.state.title,
+	        body: this.state.body
 	      };
 	      this.setState({
 	        body: '',
 	        title: ''
 	      });
-	      console.log(brag);
+	      // console.log(brag);
+	      this.props.addBrag(brag);
 	      event.preventDefault();
 	    }
 	  }, {
@@ -37605,6 +37628,10 @@
 	
 	  return BragForm;
 	}(_react2.default.Component);
+	
+	BragForm.propTypes = {
+	  addBrag: _react2.default.PropTypes.func.isRequired
+	};
 	
 	exports.default = BragForm;
 

@@ -3,6 +3,7 @@ import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import GoogleLogin from 'react-google-login';
+import 'whatwg-fetch';
 
 import Brag from './brag';
 import BragForm from './brag-form';

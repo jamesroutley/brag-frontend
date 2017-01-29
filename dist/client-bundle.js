@@ -99,12 +99,6 @@
 	  _createClass(App, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      // fetch(this.props.url, { mode: 'cors' })
-	      //   .then(response => (
-	      //     response.json()
-	      //   )).then(jsonData => (
-	      //     this.setState({ brags: jsonData.brags })
-	      //   )).catch(error => console.error(error));
 	      this.loadBrags();
 	      setInterval(this.loadBrags, this.props.pollInterval);
 	    }
@@ -133,7 +127,7 @@
 	        brag: brag,
 	        id_token: this.state.googleUser.getAuthResponse().id_token
 	      };
-	      console.log(body);
+	      // console.log(body);
 	      fetch(this.props.url + 'brag', {
 	        method: 'POST',
 	        mode: 'cors',
@@ -142,7 +136,7 @@
 	          'Content-Type': 'application/json'
 	        },
 	        body: JSON.stringify(body)
-	      }).then(this.loadBrags()).catch(function (error) {
+	      }).then(this.loadBrags).catch(function (error) {
 	        return console.error(error);
 	      });
 	    }
@@ -158,7 +152,7 @@
 	          userName: brag.name
 	        });
 	      });
-	      console.log(this.state.brags);
+	      // console.log(this.state.brags);
 	      return _react2.default.createElement(
 	        'div',
 	        null,

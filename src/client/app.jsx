@@ -42,7 +42,6 @@ class App extends React.Component {
       brag,
       id_token: this.state.googleUser.getAuthResponse().id_token,
     };
-    console.log(body);
     fetch(`${this.props.url}brag`, {
       method: 'POST',
       mode: 'cors',
@@ -51,7 +50,7 @@ class App extends React.Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(body),
-    }).then(this.loadBrags())
+    }).then(this.loadBrags)
       .catch(error => console.error(error));
   }
 
@@ -65,7 +64,6 @@ class App extends React.Component {
         userName={brag.name}
       />
     ));
-    console.log(this.state.brags);
     return (
       <div>
         <header>
